@@ -1,0 +1,16 @@
+{
+  "name": "interclaw-coordinator-standalone",
+  "version": "1.0.0",
+  "description": "Standalone HTTP coordinator for multi-claw interconnect (Zeabur deployable)",
+  "type": "module",
+  "main": "interclaw_coordinator_standalone.js",
+  "scripts": {
+    "start": "node interclaw_coordinator_standalone.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
