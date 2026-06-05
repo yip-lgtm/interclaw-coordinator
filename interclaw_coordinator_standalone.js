@@ -135,6 +135,26 @@ app.use((err, req, res, next) => {
 });
 
 load();
+
+app.get('/', (req, res) => {
+  res.redirect('/qimen-landing');
+});
+
+app.get('/qimen-landing', (req, res) => {
+  try {
+    const QIMEN_DIR = process.env.QIMEN_DIR || '/home/ubuntu/qimen_service';
+    const landingPath = path.join(QIMEN_DIR, 'landing.html');
+    if (fs.existsSync(landingPath)) {
+      res.set('Content-Type', 'text/html; charset=utf-8');
+      res.send(fs.readFileSync(landingPath, 'utf8'));
+    } else {
+      res.status(404).send('Landing page not found at ' + landingPath);
+    }
+  } catch (e) {
+    res.status(500).send('Error: ' + e.message);
+  }
+});
+
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`[coordinator] listening on 0.0.0.0:${PORT}`);
   console.log(`[coordinator] data file: ${DATA_FILE}`);
